@@ -1,4 +1,9 @@
 <script>
+  /*
+  function makePayment() {
+  alert("Payment processing... ✅");
+}
+
 /*
   Simple client-only wallet demo.
   Data model in localStorage:
@@ -350,4 +355,5 @@ el('close-auth').addEventListener('click', closeAuth);
     // leave empty to let user seed or register
   }
 })();
+
 </script>
