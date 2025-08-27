@@ -1,7 +1,5 @@
 <script>
-  /*
-  function makePayment() {
-  alert("Payment processing... ✅");
+  
 }
 
 /*
@@ -21,6 +19,9 @@ const L = {
 const STORAGE_USERS = 'paylite_users_v1';
 const STORAGE_SESSION = 'paylite_session_v1';
 
+  function makePayment() {
+  alert("Payment processing... ✅");
+  }
 function cents(ghs) {
   // convert number to integer cents (2 decimal places)
   return Math.round(Number(ghs) * 100);
@@ -357,3 +358,4 @@ el('close-auth').addEventListener('click', closeAuth);
 })();
 
 </script>
+
