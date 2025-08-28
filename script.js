@@ -87,22 +87,39 @@ async function renderHeader(){
   }
 }
 
-async function renderBalance(){
-  const user = auth.currentUser;
-  const amtEl = el("balance-amount");
-  const emailEl = el("user-email-display");
+/* ---------- Transfer Action with email lookup ---------- */
+async function transferAction(toEmail, amountGhs) {
+  const user = auth.currentUser; 
+  if (!user) return openAuth();
 
-  if(!user){
-    amtEl.textContent = "GH₵ 0.00";
-    emailEl.textContent = "Not signed in";
-    return;
+  const amountC = cents(amountGhs);
+  const senderData = await getUserDoc(user.uid);
+
+  if (senderData.balance_cents < amountC) {
+    throw new Error("Insufficient funds");
   }
 
-  const udata = await getUserDoc(user.uid);
-  amtEl.textContent = "GH₵ " + fromCents(udata.balance_cents);
-  emailEl.textContent = user.email;
+  // 🔎 Step 1: Lookup recipient UID from email
+  const mappingRef = doc(db, "emailToUid", toEmail.toLowerCase());
+  const mappingSnap = await getDoc(mappingRef);
 
-  // Listen for transactions live
-  const txList = el("tx-list");
-  const ref = collection(db, "users"
+  if (!mappingSnap.exists()) {
+    throw new Error("Recipient not found (email not registered).");
+  }
+
+  const recipientUid = mappingSnap.data().uid;
+
+  // 🔁 Step 2: Deduct from sender
+  await updateBalance(user.uid, senderData.balance_cents - amountC);
+  await pushTransaction(user.uid, "transfer_out", amountC, `To ${toEmail}`);
+
+  // 🔁 Step 3: Add to recipient
+  const recipientData = await getUserDoc(recipientUid);
+  await updateBalance(recipientUid, recipientData.balance_cents + amountC);
+  await pushTransaction(recipientUid, "transfer_in", amountC, `From ${user.email}`);
+
+  alert(`✅ Transfer of GH₵${amountGhs} sent to ${toEmail}`);
+}
+
                          </script>
+
