@@ -12,8 +12,8 @@ const firebaseConfig = {
   projectId: "paymate-e4949",
   storageBucket: "paymate-e4949.firebasestorage.app",
   messagingSenderId: "930809633379",
-  appId: "1:930809633379:web:d10f7f62f1243dfdc5f656",
-  measurementId: "G-EVVG2TCZEC"
+  appId: "1:930809633379:web:ecef5709c2d80514c5f656",
+  measurementId: "G-7X9V0DYKRZ"
 };
 
 // Initialize Firebase
