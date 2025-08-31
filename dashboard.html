@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard — PayMate</title>
+</head>
+<body>
+  <h1>Welcome to your PayMate dashboard! 💸</h1>
+  <button id="logoutBtn">Log Out</button>
+
+  <script type="module">
+    import { auth } from "./firebase.js";
+    import { signOut } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
+
+    document.getElementById("logoutBtn").addEventListener("click", async () => {
+      await signOut(auth);
+      window.location.href = "./";
+    });
+  </script>
+</body>
+</html>
