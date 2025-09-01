@@ -8,11 +8,12 @@ const firebaseConfig = {
   apiKey: "AIzaSyCM7__CBDBWAOH8c3TKShNEOyG-Pq5NDMs",
   authDomain: "paymate-e4949.firebaseapp.com",
   projectId: "paymate-e4949",
-  storageBucket: "paymate-e4949.firebasestorage.app",
+  storageBucket: "paymate-e4949.appspot.com",  // ✅ FIXED
   messagingSenderId: "930809633379",
   appId: "1:930809633379:web:ecef5709c2d80514c5f656",
   measurementId: "G-7X9V0DYKRZ"
 };
+
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
