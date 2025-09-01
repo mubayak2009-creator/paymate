@@ -9,24 +9,37 @@
 <body>
   <h1>Welcome to Paymate</h1>
 
-  <!-- Login Form -->
+  <!-- User info -->
+  <div id="user-area"></div>
+
+  <!-- Login form -->
   <form id="loginForm">
-    <input type="email" id="email" placeholder="Email" required />
-    <input type="password" id="password" placeholder="Password" required />
+    <input type="email" id="loginEmail" placeholder="Email" required />
+    <input type="password" id="loginPassword" placeholder="Password" required />
     <button type="submit">Login</button>
   </form>
 
-  <!-- Signup Form -->
+  <!-- Signup form -->
   <form id="signupForm">
     <input type="email" id="signupEmail" placeholder="Email" required />
     <input type="password" id="signupPassword" placeholder="Password" required />
+    <input type="text" id="signupName" placeholder="Full Name" />
     <button type="submit">Sign Up</button>
   </form>
 
-  <!-- Load app.js (this imports firebase.js and handles auth) -->
+  <!-- Transfer form -->
+  <form id="transferForm">
+    <input type="email" id="toEmail" placeholder="Recipient Email" required />
+    <input type="number" id="amount" placeholder="Amount (GHS)" required />
+    <button type="submit">Send Money</button>
+  </form>
+
+  <!-- Scripts -->
   <script type="module" src="./app.js"></script>
 </body>
 </html>
+
+
 
 
 
